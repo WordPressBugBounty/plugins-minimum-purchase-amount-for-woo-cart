@@ -2,35 +2,40 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Minimum Purchase Amount For WooCommerce 2.3.19\n"
+"Project-Id-Version: Minimum Purchase Amount For WooCommerce 2.3.20\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/minimum-purchase-amount-for-woo-cart\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-04-08T18:57:49+00:00\n"
+"POT-Creation-Date: 2024-12-31T18:08:22+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.9.0\n"
+"X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: ct-minimum-purchase-amount-for-woo-cart\n"
 
 #. Plugin Name of the plugin
+#: minimum-purchase-amount-for-woocommerce-cart.php
 msgid "Minimum Purchase Amount For WooCommerce"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: minimum-purchase-amount-for-woocommerce-cart.php
 msgid "https://wordpress.org/plugins/minimum-purchase-amount-for-woo-cart/"
 msgstr ""
 
 #. Description of the plugin
+#: minimum-purchase-amount-for-woocommerce-cart.php
 msgid "This woocommecre extension will allow you to specify the minimum purchase value for WooCommerce."
 msgstr ""
 
 #. Author of the plugin
+#: minimum-purchase-amount-for-woocommerce-cart.php
 msgid "CT Talks"
 msgstr ""
 
 #. Author URI of the plugin
+#: minimum-purchase-amount-for-woocommerce-cart.php
 msgid "https://cttalks.com/"
 msgstr ""
 
@@ -121,7 +126,7 @@ msgid "Current cart total."
 msgstr ""
 
 #: includes/admin/ct-class-settings-page.php:166
-#: includes/public/ct-class-min-cart-amount-application.php:95
+#: includes/public/ct-class-min-cart-amount-application.php:100
 msgid "The minimum amount to make a purchase is"
 msgstr ""
 
@@ -130,7 +135,7 @@ msgid "& the current cart total is"
 msgstr ""
 
 #: includes/admin/ct-class-settings-page.php:166
-#: includes/public/ct-class-min-cart-amount-application.php:95
+#: includes/public/ct-class-min-cart-amount-application.php:100
 msgid "please add the products worth"
 msgstr ""
 
@@ -190,32 +195,28 @@ msgstr ""
 msgid "Some error occured, please try again"
 msgstr ""
 
-#: includes/public/ct-class-min-cart-amount-application.php:23
-msgid "Proceed to checkout"
-msgstr ""
-
-#: includes/public/ct-class-min-cart-amount-application.php:95
+#: includes/public/ct-class-min-cart-amount-application.php:100
 msgid " & the current cart total is"
 msgstr ""
 
-#: includes/public/ct-class-min-cart-amount-application.php:95
+#: includes/public/ct-class-min-cart-amount-application.php:100
 msgid "or more to successfully make a purchase"
 msgstr ""
 
-#: includes/public/ct-class-min-cart-amount-application.php:98
+#: includes/public/ct-class-min-cart-amount-application.php:103
 msgid "[minimum-amount]"
 msgstr ""
 
-#: includes/public/ct-class-min-cart-amount-application.php:100
+#: includes/public/ct-class-min-cart-amount-application.php:105
 msgid "[amount-remaining]"
 msgstr ""
 
-#: includes/public/ct-class-min-cart-amount-application.php:102
+#: includes/public/ct-class-min-cart-amount-application.php:107
 msgid "[current-total]"
 msgstr ""
 
 #. translators:  %s amount specified as minimum amount to allow free shipping
-#: includes/public/ct-class-min-cart-amount-application.php:226
+#: includes/public/ct-class-min-cart-amount-application.php:232
 msgid "Free shipping on orders above %s"
 msgstr ""
 

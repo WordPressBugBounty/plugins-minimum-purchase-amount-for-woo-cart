@@ -6,24 +6,21 @@ if ( ! class_exists('CtMPAC_Application') ) {
 			add_action( 'woocommerce_check_cart_items', array($this, 'ct_mpac_set_minimum_requirements'));
 			add_action( 'woocommerce_init', array($this, 'register_wc_shortcodes'));
 			add_action( 'ct_mpac_filter_min_cart_total', array($this, 'filter_minimum_order_amount_based_on_the_roles'), 11 , 2);
-			add_action( 'woocommerce_proceed_to_checkout', array($this, 'disable_checkout_link'), 1);
 			add_filter( 'ct_mpac_filter_current_cart_total' , array( $this , 'ct_mpac_exclude_shipping_in_cart_total' ), 12, 2);
 			add_filter( 'woocommerce_package_rates', array( $this, 'ct_mpac_allow_free_shipping' ), 10, 2 );
+			add_filter( 'woocommerce_get_checkout_url', array($this, 'disable_checkout_link'), 99, 1);
 		}
 
-
-		public function disable_checkout_link() {
+		public function disable_checkout_link( $checkoutLink ) {
 			$checkOutSetting = get_option('ct_mpac_cart_disable_checkout' , false);
 			if ( $checkOutSetting ) {
 				$minimumCartTotal = $this->get_minimum_purchase_value();
 				$currentCartTotal = $this->get_current_cart_total();
 				if ( 0!==$currentCartTotal && $currentCartTotal < $minimumCartTotal  ) {
-					remove_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 20 );
-					echo '<a href="#" class="checkout-button button alt wc-forward">';
-					esc_html_e('Proceed to checkout', 'ct-minimum-purchase-amount-for-woo-cart');
-					echo '</a>';       
+					return '#';      
 				}
 			}
+			return $checkoutLink;
 		}
 
 		public function get_minimum_purchase_value() {
@@ -53,6 +50,10 @@ if ( ! class_exists('CtMPAC_Application') ) {
 			return apply_filters('ct_mpac_filter_current_cart_total', $cartTotal, WC()->cart);
 		}
 
+		public function get_cart_item_count() {
+			return count(WC()->cart->cart_contents);
+		}
+
 		public function get_current_cart_total_for_free_shipping() {
 			$cart	   = WC()->cart;
 			$cartTotal = wc_prices_include_tax() ? $cart->get_cart_contents_total() + $cart->get_cart_contents_tax() : $cart->get_cart_contents_total();
@@ -69,18 +70,22 @@ if ( ! class_exists('CtMPAC_Application') ) {
 			global $woocommerce;
 			$minimumCartTotal = $this->get_minimum_purchase_value();
 			$currentCartTotal = $this->get_current_cart_total();
+			$itemsInACart	  = $this->get_cart_item_count();
 			
-			if (self::isZeroCartTotalAllowed() && 0==$currentCartTotal) {
+			if (!$itemsInACart) {
 				return ;
 			}
 			
+			if ( self::isZeroCartTotalAllowed() && 0==$currentCartTotal) {
+				return ;
+			}
+			
+			$customCartMessage = self::getErrorNotice($minimumCartTotal, $currentCartTotal);
+			wp_enqueue_script('ct-mpac-cart');
+			wp_localize_script( 'ct-mpac-cart', 'ct_mpac_cart_obj', array('cartMessage'=> strip_tags($customCartMessage)) );
+			
 			if ( $currentCartTotal < $minimumCartTotal  ) {
-				$customCartMessage = self::getErrorNotice($minimumCartTotal, $currentCartTotal);
-				if ( is_cart()) {
-					wc_print_notice($customCartMessage, 'error');
-				} else {
-					wc_add_notice($customCartMessage, 'error');
-				}
+				wc_add_notice($customCartMessage, 'error', array('type'=>'minimum_cart_value'));
 			}			
 		}
 
@@ -138,6 +143,7 @@ if ( ! class_exists('CtMPAC_Application') ) {
 
 		public function register_styles_and_scripts() {
 			wp_register_style( 'ct-mpac-min-amount-notice', CT_MPAC_DIR_URL . '/assets/css/shortcode-notice.css', false, CT_MPAC_VERSION);
+			wp_register_script( 'ct-mpac-cart', CT_MPAC_DIR_URL . '/assets/js/ct-mpac-cart.js', array('jquery'), CT_MPAC_VERSION);
 		}
 
 		public function filter_minimum_order_amount_based_on_the_roles( $minimumOrderAmount, $cart) {

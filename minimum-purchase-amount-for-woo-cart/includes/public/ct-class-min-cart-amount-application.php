@@ -6,7 +6,7 @@ if ( ! class_exists('CtMPAC_Application') ) {
 			add_action( 'woocommerce_check_cart_items', array($this, 'ct_mpac_set_minimum_requirements'));
 			add_action( 'woocommerce_init', array($this, 'register_wc_shortcodes'));
 			add_action( 'ct_mpac_filter_min_cart_total', array($this, 'filter_minimum_order_amount_based_on_the_roles'), 11 , 2);
-			add_filter( 'ct_mpac_filter_current_cart_total' , array( $this , 'ct_mpac_exclude_shipping_in_cart_total' ), 12, 2);
+			add_filter( 'ct_mpac_filter_current_cart_total' , array( $this , 'ct_mpac_get_conditional_cart_total_value' ), 12, 2);
 			add_filter( 'woocommerce_package_rates', array( $this, 'ct_mpac_allow_free_shipping' ), 10, 2 );
 			add_filter( 'woocommerce_get_checkout_url', array($this, 'disable_checkout_link'), 99, 1);
 		}
@@ -36,11 +36,6 @@ if ( ! class_exists('CtMPAC_Application') ) {
 
 		public function get_current_cart_total() {
 			$cartTotal = WC()->cart->total;
-		
-			if (get_option('ct_mpac_include_discount_coupons_in_total', false)) {
-				//If Consider discount in total setting is enabled.
-				$cartTotal = WC()->cart->subtotal;
-			}
 			/**
 			 * Filter the cart total , value which is considered while checking if it matches the minimum cart amount
 			 * set from the setting.
@@ -180,10 +175,23 @@ if ( ! class_exists('CtMPAC_Application') ) {
 			return $userRoles;
 		}
 
-		public function ct_mpac_exclude_shipping_in_cart_total( $cartTotal, $cart) {
-			if ( !empty( $cart ) && ! empty( $cart->shipping_total ) && get_option( 'ct_mpac_exclude_shipping_from_cart_total' , false ) ) {
-				$cartTotal = $cart->subtotal;
+		public function ct_mpac_get_conditional_cart_total_value( $cartTotal, $cart) {
+			$shouldExcludeShipping  = get_option('ct_mpac_exclude_shipping_from_cart_total', false);
+			$shouldIncludeDiscounts = get_option('ct_mpac_include_discount_coupons_in_total', false);
+
+			if ( empty( $cart ) || ( !$shouldIncludeDiscounts && !$shouldExcludeShipping )) {
+				return $cartTotal;
 			}
+
+			$cartSubtotal = $cart->subtotal;
+			if ($shouldIncludeDiscounts && $shouldExcludeShipping) {
+				return $cartSubtotal;
+			} else if ( $shouldExcludeShipping && !$shouldIncludeDiscounts) {
+				$cartSubtotal = $cartSubtotal - ( $cart->get_discount_total() + $cart->get_discount_tax() );
+				$cartSubtotal = $cartSubtotal<0?0:$cartSubtotal;
+				return $cartSubtotal;
+			}
+
 			return $cartTotal;
 		}
 

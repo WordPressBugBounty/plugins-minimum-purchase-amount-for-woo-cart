@@ -4,8 +4,8 @@ Tags: woocommerce, woocommerce order, woocommerce minimum order, woocommerce car
 Requires PHP: 7.4
 Requires at least: 4.4
 Tested up to: 6.7
-WC Tested up to: 9.5
-Stable tag: 2.3.20
+WC Tested up to: 9.6
+Stable tag: 2.3.21
 Donate link: paypal.me/cttalks
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -78,6 +78,10 @@ If you get stuck, you can ask for help in the [WordPress Plugin Forum](https://w
 4. Showing Cart Message On a Shop Page.
 
 == Changelog ==
+= 2.3.21 - 2025-02-09 = 
+* Fix: Error with excluding shipping rates while using the discount coupons.
+* Compatibility tested with latest versions of WordPress & WooCommerce.
+
 = 2.3.20 - 2025-01-01 = 
 * Fix: Error Notice even when the cart contains nothing.
 * Fix: Fixed the issue with checkout disable feature.

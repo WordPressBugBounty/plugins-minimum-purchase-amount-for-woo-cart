@@ -2,8 +2,8 @@
 
 /**
  * Plugin Name: Minimum Purchase Amount For WooCommerce
- * Description: This woocommecre extension will allow you to specify the minimum purchase value for WooCommerce.
- * Version: 2.3.20
+ * Description: Want to increase your WooCommerce average order value?  This plugin allows you to set minimum order value for your entire store, specific user roles, and for the free shipping. Start optimizing your sales today!
+ * Version: 2.3.21
  * Author: CT Talks
  * Author URI: https://cttalks.com/
  * Plugin URI: https://wordpress.org/plugins/minimum-purchase-amount-for-woo-cart/
@@ -13,7 +13,7 @@
  * 
  * Tested up to: 6.7
  * WC requires at least: 3.5
- * WC tested up to: 9.5
+ * WC tested up to: 9.6
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -37,7 +37,7 @@ if (!defined('CT_MPAC_DIR_URL')) {
 }
 
 if (!defined('CT_MPAC_VERSION')) {
-	define('CT_MPAC_VERSION', '2.3.20');
+	define('CT_MPAC_VERSION', '2.3.21');
 }
 
 add_action('plugins_loaded', 'ct_mpac_admin_settings_menu');

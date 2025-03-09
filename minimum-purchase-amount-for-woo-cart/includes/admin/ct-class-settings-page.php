@@ -402,7 +402,7 @@ if ( ! class_exists('CtMPAC_Settings_Page') ) {
 						'description'=> 'Enter a quantity to only allow this product to be purchased in groups of X'
 					)
 				);
-				echo '<a href="automattic.pxf.io/1rY3vD" target="_blank" class="overlay upgrade-to-min-max-quantities">
+				echo '<a href="https://automattic.pxf.io/1rY3vD" target="_blank" class="overlay upgrade-to-min-max-quantities">
 						<div class="description">
 						<span class="upgrade-text">Enable WooCommerce Min-Max Quantities</span>
 						<br/>

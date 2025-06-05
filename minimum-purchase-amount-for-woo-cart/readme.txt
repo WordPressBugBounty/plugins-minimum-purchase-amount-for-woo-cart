@@ -3,9 +3,9 @@ Contributors: cttalks
 Tags: woocommerce, woocommerce order, woocommerce minimum order, woocommerce cart limits, woocommerce minimum purchase amount, purchase limit, minimum cart purchase amount, role based minimum order, minimum order amount, free shipping, free shipping option
 Requires PHP: 7.4
 Requires at least: 4.4
-Tested up to: 6.7
-WC Tested up to: 9.7
-Stable tag: 2.3.22
+Tested up to: 6.8
+WC Tested up to: 9.8
+Stable tag: 2.3.23
 Donate link: paypal.me/cttalks
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -78,6 +78,9 @@ If you get stuck, you can ask for help in the [WordPress Plugin Forum](https://w
 4. Showing Cart Message On a Shop Page.
 
 == Changelog ==
+= 2.3.23 - 2025-06-06 = 
+* Compatibility tested with latest versions of WordPress & WooCommerce.
+
 = 2.3.22 - 2025-03-09 = 
 * Compatibility tested with latest versions of WordPress & WooCommerce.
 

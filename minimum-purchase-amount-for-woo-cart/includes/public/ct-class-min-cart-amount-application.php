@@ -190,6 +190,8 @@ if ( ! class_exists('CtMPAC_Application') ) {
 				$cartSubtotal = $cartSubtotal - ( $cart->get_discount_total() + $cart->get_discount_tax() );
 				$cartSubtotal = $cartSubtotal<0?0:$cartSubtotal;
 				return $cartSubtotal;
+			} elseif (!$shouldExcludeShipping && $shouldIncludeDiscounts) {
+				return $cartSubtotal;
 			}
 
 			return $cartTotal;

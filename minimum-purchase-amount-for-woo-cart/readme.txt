@@ -4,8 +4,8 @@ Tags: woocommerce, woocommerce order, woocommerce minimum order, woocommerce car
 Requires PHP: 7.4
 Requires at least: 4.4
 Tested up to: 6.8
-WC Tested up to: 9.8
-Stable tag: 2.3.23
+WC Tested up to: 9.9
+Stable tag: 2.3.24
 Donate link: paypal.me/cttalks
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -37,8 +37,8 @@ After the plugin installation, the admin needs to set the minimum purchase amoun
 == Installation ==
 
 = Minimum Requirements =
-* PHP version 7.3 or greater (PHP 7.3 or greater is recommended)
-* MySQL version 5.0 or greater (MySQL 5.6 or greater is recommended)
+* PHP version 7.4 or greater (PHP 7.4 or greater is recommended)
+* MySQL version 5.6 or greater (MySQL 5.6 or greater is recommended)
 * WordPress 4.4+
 * WooCommerce 3.0+
 
@@ -78,6 +78,11 @@ If you get stuck, you can ask for help in the [WordPress Plugin Forum](https://w
 4. Showing Cart Message On a Shop Page.
 
 == Changelog ==
+= 2.3.24 - 2025-07-12 =
+* Fix: The setting 'include discounts in cart total' was not working as expected.  
+* Compatibility tested with latest versions of WordPress & WooCommerce.
+* Added french language translations sample.
+
 = 2.3.23 - 2025-06-06 = 
 * Compatibility tested with latest versions of WordPress & WooCommerce.
 
